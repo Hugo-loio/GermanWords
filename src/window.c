@@ -19,10 +19,7 @@ void activate (GtkApplication* app, gpointer user_data)
   interface->category = category;
   g_object_set(category, "margin-top", outer_padding, NULL);
   g_object_set(category, "margin-left", outer_padding, NULL);
-  //gtk_widget_set_halign(category, GTK_ALIGN_CENTER);
-  //gtk_widget_set_valign(category, GTK_ALIGN_CENTER);
   gtk_widget_set_hexpand(category, TRUE);
-  //gtk_widget_set_vexpand(category, FALSE);
   gtk_grid_attach(GTK_GRID(grid), category, 0, 0, 1, 1);
   for (int i = 0; i < interface->nword_types; i++){
     gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (category), interface->word_types[i]);
@@ -33,45 +30,33 @@ void activate (GtkApplication* app, gpointer user_data)
   g_object_set(english_word, "margin-right", outer_padding, NULL);
   interface->english_word = english_word;
   gtk_widget_set_hexpand(english_word, TRUE);
-  //gtk_widget_set_vexpand(english_word, TRUE);
   gtk_widget_set_halign(english_word, GTK_ALIGN_CENTER);
-  //gtk_widget_set_valign(english_word, GTK_ALIGN_CENTER);
   gtk_grid_attach(GTK_GRID(grid), english_word, 1, 0 ,1 ,1);
 
   GtkWidget * insert = gtk_entry_new();
   interface->insert = insert;
   g_object_set(insert, "margin-left", outer_padding, NULL);
   gtk_widget_set_hexpand(insert, TRUE);
-  //gtk_widget_set_vexpand(insert, FALSE);
-  //gtk_widget_set_halign(insert, GTK_ALIGN_CENTER);
-  //gtk_widget_set_valign(insert, GTK_ALIGN_CENTER);
   gtk_grid_attach(GTK_GRID(grid), insert, 0, 1, 1, 1);
 
   GtkWidget * submit = gtk_button_new_with_label("Submit");
   g_object_set(submit, "margin-right", outer_padding, NULL);
   gtk_widget_set_hexpand(submit, TRUE);
-  //gtk_widget_set_vexpand(submit, TRUE);
-  //gtk_widget_set_halign(submit, GTK_ALIGN_CENTER);
-  //gtk_widget_set_valign(submit, GTK_ALIGN_CENTER);
   gtk_grid_attach(GTK_GRID(grid), submit, 1, 1, 1, 1);
+  g_signal_connect(submit, "clicked", G_CALLBACK(check_answer), interface);
 
   GtkWidget * answer = gtk_label_new("Answer");
   g_object_set(answer, "margin-bottom", outer_padding, NULL);
   g_object_set(answer, "margin-left", outer_padding, NULL);
   interface->answer = answer;
   gtk_widget_set_hexpand(answer, TRUE);
-  //gtk_widget_set_vexpand(answer, TRUE);
   gtk_widget_set_halign(answer, GTK_ALIGN_CENTER);
-  //gtk_widget_set_valign(answer, GTK_ALIGN_CENTER);
   gtk_grid_attach(GTK_GRID(grid), answer, 0, 2, 1, 1);
 
   GtkWidget * next_word = gtk_button_new_with_label("Next word");
   g_object_set(next_word, "margin-bottom", outer_padding, NULL);
   g_object_set(next_word, "margin-right", outer_padding, NULL);
   gtk_widget_set_hexpand(next_word, TRUE);
-  //gtk_widget_set_vexpand(next_word, TRUE);
-  //gtk_widget_set_halign(next_word, GTK_ALIGN_CENTER);
-  //gtk_widget_set_valign(next_word, GTK_ALIGN_CENTER);
   gtk_grid_attach(GTK_GRID(grid), next_word, 1, 2, 1, 1);
   g_signal_connect(next_word, "clicked", G_CALLBACK(random_word), interface);
 

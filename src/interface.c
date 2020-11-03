@@ -181,8 +181,68 @@ void random_word(GtkWidget * next_word, gpointer user_data){
   }
   //Update english word label
   gtk_label_set_text(GTK_LABEL(interface->english_word), (char *) &translation);
+  interface->selected_word = word;
   free(category);
   return;
+}
+
+void check_answer(GtkWidget * submit, gpointer user_data){
+  Interface * interface = (Interface *) user_data;
+  const char * answer = gtk_entry_get_text(GTK_ENTRY(interface->insert));
+  char * correct_answer;
+  bool correct = false;
+  bool firstletter = false;
+  bool rest = false;
+  if(answer[0] != '\0'){ //answer isn't empty
+    for (int i = 0; i < interface->selected_word->nwords ; i++){
+      correct_answer = interface->selected_word->attributes[i];
+      //first letter is case insensitive
+      if(answer[0] > 96 && answer[0] < 123){ //lower case
+	if(answer[0] == correct_answer[0] || answer[0]-32 == correct_answer[0]){
+	  firstletter = true;
+	}
+      }
+      else if (answer[0] > 64 && answer[0] < 91){ //upper case
+	if(answer[0] == correct_answer[0] || answer[0]+32 == correct_answer[0]){
+	  firstletter = true;
+	}
+      }
+      else if (answer[0] == correct_answer[0]){ //just in case first letter is a symbol
+	firstletter = true;
+      }
+      if(answer[1] == '\0'){
+	if(correct_answer[1] == '\0'){ //word has just one letter
+	  rest = true;
+	}
+      }
+      else if(correct_answer[1] != '\0'){ //word and answer have more than one letter
+	if(strcmp(&answer[1],&correct_answer[1]) == 0){
+	  rest = true;
+	}
+      }
+      if (rest && firstletter){
+	correct= true;
+	break;
+      }
+    }
+  }
+  char answer_label[200] = "";
+  if (correct){
+    strcat(answer_label, "Correct!\n");
+  }
+  else{
+    strcat(answer_label, "Wrong!\n");
+  }
+  strcat(answer_label, interface->selected_word->attributes[0]);
+  for(int i = 1; i < interface->selected_word->nwords; i++){
+    strcat(answer_label, "/");
+    strcat(answer_label, interface->selected_word->attributes[i]);
+  }
+  for(int i = 0; i < interface->selected_word->nproperties; i++){
+    strcat(answer_label, ", ");
+    strcat(answer_label, interface->selected_word->attributes[interface->selected_word->nwords + interface->selected_word->ntranslations + i]);
+  }
+  gtk_label_set_text(GTK_LABEL(interface->answer), answer_label);
 }
 
 void destroy_interface(Interface * words){

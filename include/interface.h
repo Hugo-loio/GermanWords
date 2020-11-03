@@ -14,11 +14,12 @@ typedef struct INTERFACE_STRUCT{
   int nword_types;
   Word ** words;
   int nwords;
+  Word * selected_word;
 } Interface;
 
 void read_file(Interface *);
 void random_word(GtkWidget *, gpointer);
-void check_answer(Interface *);
+void check_answer(GtkWidget *, gpointer);
 int word_size(char *, int,int);
 int word_number(char *,int);
 void destroy_interface(Interface *);
