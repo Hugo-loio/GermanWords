@@ -34,7 +34,7 @@ bin:
 	mkdir bin
 
 clean:
-	rm -fv bin/*.exe
+	rm -fv bin/*
 
 test:
 	@echo "Testing..."
