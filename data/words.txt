@@ -1,0 +1,7 @@
+an|at|Preposition
+statt,anstatt|instead of|Preposition
+auf|up,on|Preposition
+außer|except|Preposition
+bei|with,in the case of,at|Preposition
+durch|through,by means of|Preposition
+der Vogel|the bird|Noun
