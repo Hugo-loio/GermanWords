@@ -139,21 +139,37 @@ void random_word(GtkWidget * next_word, gpointer user_data){
   gtk_entry_set_text(GTK_ENTRY(interface->insert), "");
   //Get random word from the ones that haven't been picked
   Word * word = interface->words[0];
-  int count = 0;
-  for (count = 0; count < interface->nwords; count++){
-    word = interface->words[rand()%(interface->nwords)];
-    if (word->picked == false){
-      if ((category == NULL) || (strcmp(word->attributes[word->nwords + word->ntranslations], category) == 0 )){
-	word->picked = true;
-	break;
+  int elegible = 0;
+  for (int i = 0; i < interface->nwords; i++){
+    word = interface->words[i];
+    if(word->picked == false){
+      if ((category == NULL) || (strcmp(word->attributes[word->nwords + word->ntranslations], category) == 0)){
+	elegible++;
       }
     }
   }
-  if (count == interface->nwords){
+  if (elegible != 0){
+    int rand_index = rand()%elegible;
+    int count = 0;
+    for(int i = 0; i < interface->nwords; i++){
+      word = interface->words[i];
+      if(word->picked == false){
+	if ((category == NULL) || (strcmp(word->attributes[word->nwords + word->ntranslations], category) == 0)){
+	  if (count == rand_index){
+	    word->picked = true;
+	    break;
+	  }
+	  count++;
+	}
+      }
+    }
+  }
+  else{
     for(int i = 0; i < interface->nwords; i++){
       interface->words[i]->picked = false;
     }
     random_word(next_word, user_data);
+    free(category);
     return;
   }
   //Combine translations into one string
