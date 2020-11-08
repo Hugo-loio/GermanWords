@@ -1,7 +1,31 @@
-an|at|Präposition
-statt,anstatt|instead of|Präposition
-auf|up,on|Präposition
-außer|except|Präposition
-bei|with,in the case of,at|Präposition
-durch|through,by means of|Präposition
+an|at,to,on|Präposition,akkusativ/dativ
+auf|up,on|Präposition,akkusativ/dativ
+aus|at,near|Präposition,dativ
+außer|except|Präposition,genetiv
+bei|with,in the case of,at|Präposition,dativ
+bis|by,to,until,up to|Präposition,akkusativ
+durch|through,by means of,across|Präposition,akkusativ
+entlang|along,down|Präposition,akkusativ
+für|for (on behalf of)|Präposition,akkusativ
+gegen|against,towards|Präposition,akkusativ
+gegenüber|opposite,across from,in relation to|Präposition,akkusativ
+gemäß|according to|Präposition,dativ
+hinter|behind|Präposition,akkusativ/dativ
+in|in,into|Präposition,akkusativ/dativ
+mit|with|Präposition,dativ
+nach|after,to|Präposition,dativ
+neben|next to|Präposition,akkusativ/dativ
+ohne|without|Präposition,akkusativ
+seit|since,for|Präposition,dativ
+statt,anstatt|instead of|Präposition,genetiv
+troz|despite,in spite of|Präposition,genetiv
+um|at,around|Präposition,akkusativ
+unter|under,among|Präposition,akkusativ,dativ
+von|from,of,by (means of)|Präposition,dativ
+während|during|Präposition,akkusativ,dativ
+wegen|on account of, because of|Präposition,genetive
+wider|against|Präposition,akkusativ
+zu|to|Präposition,dativ
+zwischen|between|Präposition,akkusativ/dativ
+über|over,above,about|Präposition,akkusativ/dativ
 der Vogel|the bird|Substantiv,Maskulin
